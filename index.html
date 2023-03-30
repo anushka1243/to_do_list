@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> To-Do List </title>
+    <style>
+        /* add some basic styles to the app */
+        body {
+            font-family: Arial, sans-serif;
+
+            /* background: linear-gradient(to top left, #00ffff 0%, #ff99ff 100%); */
+            background: rgb(2, 0, 36);
+            background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(24, 6, 89, 1) 22%, rgba(7, 27, 102, 1) 27%, rgba(15, 8, 109, 1) 30%, rgba(9, 9, 121, 1) 41%, rgba(10, 9, 119, 1) 47%, rgba(8, 55, 150, 1) 59%, rgba(0, 212, 255, 1) 100%);
+
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+            color: #fff;
+            font-size: 47px;
+        }
+
+        title {
+            color: #fff
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .input-field {
+            width: 50%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .btn {
+            background: rgb(12, 40, 246);
+            background: radial-gradient(circle, rgba(12, 40, 246, 1) 0%, rgba(10, 236, 146, 1) 71%, rgba(7, 249, 217, 1) 100%);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background-color: #f6fbf7;
+            color: #010413;
+            border: 1cm;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+
+        li {
+            color: #fff;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+
+        .completed {
+            text-decoration: line-through;
+            color: #aaa;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>To-Do List</h1>
+    <div class="container">
+        <input type="text" id="input-field" class="input-field" placeholder="Add a new task">
+        <button id="add-btn" class="btn">Add</button>
+        <ul id="tasks-list"></ul>
+    </div>
+    <script>
+        // add event listener to the add button
+        document.getElementById("add-btn").addEventListener("click", function () {
+            var inputValue = document.getElementById("input-field").value;
+            if (inputValue === '') {
+                alert("Please enter a task");
+            } else {
+                var li = document.createElement("li");
+                var t = document.createTextNode(inputValue);
+                li.appendChild(t);
+                document.getElementById("tasks-list").appendChild(li);
+                document.getElementById("input-field").value = "";
+            }
+        });
+
+        // add event listener to the list items
+        var list = document.querySelector('ul');
+        list.addEventListener('click', function (ev) {
+            if (ev.target.tagName === 'LI') {
+                ev.target.classList.toggle('completed');
+            }
+        }, false);
+    </script>
+</body>
+
+</html>
